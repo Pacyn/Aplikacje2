@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class WeatherController extends AbstractController
 {
-    #[Route('/weather/{id}', name: 'app_weather', requirements: ['id' => '\d+'])]
+    #[Route('/weather/{city}/{country}', name: 'app_weather')]
     public function city(Location $location, MeasurementRepository $repository): Response
     {
         $measurements = $repository->findByLocation($location);
@@ -18,19 +18,6 @@ final class WeatherController extends AbstractController
         return $this->render('weather/city.html.twig', [
 
             'location' => $location,
-
-            'measurements' => $measurements,
-        ]);
-    }
-
-    #[Route('/weather/Name/{cityName}', name: 'app_weather')]
-    public function cityString(String $cityName, MeasurementRepository $repository): Response
-    {
-        $measurements = $repository->findByName($cityName);
-
-        return $this->render('weather/city.html.twig', [
-
-            'location' => $measurements,
 
             'measurements' => $measurements,
         ]);

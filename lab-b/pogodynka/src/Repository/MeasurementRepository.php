@@ -24,13 +24,9 @@ class MeasurementRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('m');
 
         $qb->where('m.location = :location')
-
             ->setParameter('location', $location)
-
             ->andWhere('m.date > :now')
-
             ->setParameter('now', date('Y-m-d'));
-
 
 
         $query = $qb->getQuery();
@@ -38,31 +34,6 @@ class MeasurementRepository extends ServiceEntityRepository
         $result = $query->getResult();
 
         return $result;
-
-    }
-    public function findByName(String $cityName)
-
-    {
-
-        $qb = $this->createQueryBuilder('m');
-
-        $qb->join('m.location', 'l')
-
-            ->where('l.city = :cityName')
-
-            ->setParameter('cityName', $cityName)
-
-            ->andWhere('m.date > :now')
-
-            ->setParameter('now', date('Y-m-d'));
-
-
-
-        $query = $qb->getQuery();
-
-        $result = $query->getResult();
-
-        return [$result];
 
     }
 
