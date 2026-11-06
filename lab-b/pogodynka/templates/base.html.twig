@@ -31,7 +31,7 @@
                 <a class="navbar-brand fw-bold d-flex align-items-center gap-2"
                    href="{{ path('app_location_index') }}">
                     <i class="bi bi-grid-1x2-fill text-primary fs-4"></i>
-                    MyApplication
+                    Pogodynka
                 </a>
 
                 <button class="navbar-toggler" type="button"
@@ -71,6 +71,15 @@
                 </span>
                     </div>
 
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        <a href="{{ path('app_logout') }}" style="color: white">Logout</a>
+
+                    {% else %}
+
+                        <a href="{{ path('app_login') }}" style="color: white">Login</a>
+
+                    {% endif %}
                 </div>
             </div>
         </nav>
